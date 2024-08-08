@@ -5,6 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
   <title>Fitness</title>
+  <style>
+    .collapse-content {
+      display: none;
+    }
+    .collapse-content.active {
+      display: block;
+    }
+    /* Background Image */
+    .background-image {
+      background-image: url('data:image/jpeg;base64,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');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    /* Custom Bullet Points */
+    .custom-bullet {
+      display: flex;
+      align-items: center;
+    }
+    .custom-bullet-icon {
+      background-color: #0a0a0a; /* Tailwind Blue-500 */
+      color: rgb(88, 84, 84);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.75rem;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    }
+    .custom-bullet-icon::before {
+      content: '\2022'; /* Unicode bullet point */
+      font-size: 1.25rem;
+    }
+    /* Improved Text Visibility */
+    .text-visible {
+      color: #f3f4f6; /* Tailwind Cool Gray-100 */
+    }
+  </style>
 </head>
 <body>
   <header class="text-gray-600 body-font">
@@ -16,66 +56,237 @@
         <span class="ml-3 text-xl">FitCom</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <a href="home.html"class="mr-5 hover:text-gray-900">HOME</a>
+        <a href="home.html" class="mr-5 hover:text-gray-900">HOME</a>
         <a href="aboutus.html" class="mr-5 hover:text-gray-900">ABOUT US</a>
-        <a href="contact.html"class="mr-5 hover:text-gray-900">CONTACT US</a>
-        <a class="mr-5 hover:text-gray-900">LOGIN IN</a>
+        <a href="contact.html" class="mr-5 hover:text-gray-900">CONTACT US</a>
+        <a href="login.html" class="mr-5 hover:text-gray-900">LOGIN</a>
       </nav>
-      <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">SIGN IN
+      <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">SIGN UP
         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
       </button>
     </div>
   </header>
+ <section class="text-gray-600 body-font background-image">
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-col text-center w-full mb-20">
-        <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">ROOF PARTY POLAROID</h2>
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Master Cleanse Reliac Heirloom</h1>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+        <div class="container px-5 py-24 mx-auto bg-black bg-opacity-60">
+            <div class="flex flex-col text-center w-full mb-20">
+              <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Welcome to FitCom</h1>
+              <p class="lg:w-2/3 mx-auto leading-relaxed text-white text-base"> Your ultimate fitness companion. Calculate your BMI, track your calories, and achieve your fitness goals.</p>
+            </div>
+            
+      <!-- BMI Calculator -->
+      <div class="flex flex-wrap -m-4">
+        <div class="p-4 lg:w-1/2 md:w-full">
+          <div class="h-full bg-gray-100 p-8 rounded">
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">BMI Calculator</h2>
+            <form id="bmiForm">
+              <div class="relative mb-4">
+                <label for="height" class="leading-7 text-sm text-gray-600">Height (cm)</label>
+                <input type="number" id="height" name="height" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              </div>
+              <div class="relative mb-4">
+                <label for="weight" class="leading-7 text-sm text-gray-600">Weight (kg)</label>
+                <input type="number" id="weight" name="weight" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              </div>
+              <button type="button" onclick="calculateBMI()" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Calculate</button>
+            </form>
+            <p id="bmiResult" class="text-lg text-gray-900 font-medium title-font mt-4"></p>
+          </div>
+        </div>
+
+        <!-- Calorie Calculator -->
+        <div class="p-4 lg:w-1/2 md:w-full">
+          <div class="h-full bg-gray-100 p-8 rounded">
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Calorie Calculator</h2>
+            <form id="calorieForm">
+              <div class="relative mb-4">
+                <label for="age" class="leading-7 text-sm text-gray-600">Age</label>
+                <input type="number" id="age" name="age" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              </div>
+              <div class="relative mb-4">
+                <label for="gender" class="leading-7 text-sm text-gray-600">Gender</label>
+                <select id="gender" name="gender" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="relative mb-4">
+                <label for="activity" class="leading-7 text-sm text-gray-600">Activity Level</label>
+                <select id="activity" name="activity" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                  <option value="sedentary">Sedentary</option>
+                  <option value="light">Lightly Active</option>
+                  <option value="moderate">Moderately Active</option>
+                  <option value="very">Very Active</option>
+                  <option value="extra">Extra Active</option>
+                </select>
+              </div>
+              <button type="button" onclick="calculateCalories()" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Calculate</button>
+            </form>
+            <p id="calorieResult" class="text-lg text-gray-900 font-medium title-font mt-4"></p>
+          </div>
+        </div>
       </div>
-      <div class="flex flex-wrap">
-        <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
-          <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Shooting Stars</h2>
-          <p class="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-          <a class="text-indigo-500 inline-flex items-center">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
-          <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">The Catalyzer</h2>
-          <p class="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-          <a class="text-indigo-500 inline-flex items-center">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
-          <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Neptune</h2>
-          <p class="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-          <a class="text-indigo-500 inline-flex items-center">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
-          <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Melanchole</h2>
-          <p class="leading-relaxed text-base mb-4">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-          <a class="text-indigo-500 inline-flex items-center">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-      <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
     </div>
+    <div class="container px-5 py-24 mx-auto bg-black bg-opacity-60">
+        <div class="flex flex-col text-center w-full mb-20">
+          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Fitness Tips for a Healthier You</h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-white text-base">Discover essential fitness tips to enhance your well-being, boost your energy, and achieve your health goals.</p>
+        </div>
+  
+        <div class="flex flex-wrap -m-4">
+          <!-- Fitness Goals Section -->
+          <div class="w-full mb-4">
+            <button class="w-full bg-gray-100 p-4 rounded-md text-left focus:outline-none" onclick="toggleCollapse('collapse1')">
+              <h2 class="text-lg text-gray-900 font-medium title-font mb-4">1. Setting Fitness Goals</h2>
+            </button>
+            <div id="collapse1" class="collapse-content">
+              <ul class="list-none pl-0">
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Define Your Objectives: Identify what you want to achieve, whether it's losing weight, gaining muscle, or improving endurance.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Create SMART Goals: Ensure your goals are Specific, Measurable, Achievable, Relevant, and Time-bound.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Track Your Progress: Use tools or apps to monitor your progress and make adjustments as needed.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Workout Plans Section -->
+          <div class="w-full mb-4">
+            <button class="w-full bg-gray-100 p-4 rounded-md text-left focus:outline-none" onclick="toggleCollapse('collapse2')">
+              <h2 class="text-lg text-gray-900 font-medium title-font mb-4">2. Creating a Balanced Workout Plan</h2>
+            </button>
+            <div id="collapse2" class="collapse-content">
+              <ul class="list-none pl-0">
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Include Cardiovascular Exercises: Incorporate activities like running, cycling, or swimming to enhance cardiovascular health.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Add Strength Training: Perform exercises such as weight lifting or bodyweight exercises to build muscle strength.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Incorporate Flexibility and Mobility Work: Include stretching or yoga to improve flexibility and prevent injuries.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Schedule Rest Days: Allow time for recovery to avoid overtraining and injury.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Nutrition Section -->
+          <div class="w-full mb-4">
+            <button class="w-full bg-gray-100 p-4 rounded-md text-left focus:outline-none" onclick="toggleCollapse('collapse3')">
+              <h2 class="text-lg text-gray-900 font-medium title-font mb-4">3. Nutrition for Fitness</h2>
+            </button>
+            <div id="collapse3" class="collapse-content">
+              <ul class="list-none pl-0">
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Balanced Diet: Consume a variety of foods, including fruits, vegetables, lean proteins, and whole grains.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Hydration: Drink plenty of water throughout the day to stay hydrated and support optimal performance.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Avoid Processed Foods: Minimize intake of processed foods, sugary drinks, and excessive amounts of unhealthy fats.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Pre- and Post-Workout Nutrition: Eat the right nutrients before and after workouts to maximize your results.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Rest and Recovery Section -->
+          <div class="w-full mb-4">
+            <button class="w-full bg-gray-100 p-4 rounded-md text-left focus:outline-none" onclick="toggleCollapse('collapse4')">
+              <h2 class="text-lg text-gray-900 font-medium title-font mb-4">4. Rest and Recovery</h2>
+            </button>
+            <div id="collapse4" class="collapse-content">
+              <ul class="list-none pl-0">
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Quality Sleep: Aim for 7-9 hours of sleep each night to help your body recover and regenerate.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Active Recovery: Engage in low-intensity activities like walking or yoga on rest days to promote recovery.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Listen to Your Body: Pay attention to signs of overtraining and adjust your routine accordingly.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Consistency Section -->
+          <div class="w-full mb-4">
+            <button class="w-full bg-gray-100 p-4 rounded-md text-left focus:outline-none" onclick="toggleCollapse('collapse5')">
+              <h2 class="text-lg text-gray-900 font-medium title-font mb-4">5. Staying Consistent with Your Fitness Journey</h2>
+            </button>
+            <div id="collapse5" class="collapse-content">
+              <ul class="list-none pl-0">
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Create a Routine: Establish a workout schedule that fits your lifestyle and stick to it.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Stay Motivated: Find sources of motivation, such as workout partners or tracking progress.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Celebrate Milestones: Acknowledge and reward yourself for achieving fitness milestones to stay encouraged.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Professional Guidance Section -->
+          <div class="w-full mb-4">
+            <button class="w-full bg-gray-100 p-4 rounded-md text-left focus:outline-none" onclick="toggleCollapse('collapse6')">
+              <h2 class="text-lg text-gray-900 font-medium title-font mb-4">6. Seeking Professional Guidance</h2>
+            </button>
+            <div id="collapse6" class="collapse-content">
+              <ul class="list-none pl-0">
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Personal Trainers: Work with a personal trainer to receive customized workout plans and expert advice.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Nutritionists: Consult a nutritionist to create a diet plan that supports your fitness goals.</p>
+                </li>
+                <li class="custom-bullet mb-4">
+                  <div class="custom-bullet-icon"></div>
+                  <p class="leading-relaxed text-visible">Fitness Assessments: Undergo fitness assessments to evaluate your progress and adjust your program accordingly.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
   </section>
+</section>
+  
   <footer class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
       <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
@@ -85,7 +296,7 @@
           </svg>
           <span class="ml-3 text-xl">FitCom</span>
         </a>
-        <p class="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+        <p class="mt-2 text-sm text-gray-500">Your ultimate fitness companion and achieve your fitness goals</p>
       </div>
       <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
         <div class="lg:w-1/4 md:w-1/2 w-full px-4">
@@ -190,5 +401,61 @@
       </div>
     </div>
   </footer>
+  <script>
+  // Global variables to store height and weight
+  let globalHeight = 0;
+  let globalWeight = 0;
+
+  function calculateBMI() {
+    globalHeight = parseFloat(document.getElementById('height').value);
+    globalWeight = parseFloat(document.getElementById('weight').value);
+
+    if (globalHeight > 0 && globalWeight > 0) {
+      const bmi = (globalWeight / ((globalHeight / 100) ** 2)).toFixed(2);
+      document.getElementById('bmiResult').textContent = `Your BMI is ${bmi}`;
+    } else {
+      document.getElementById('bmiResult').textContent = 'Please enter valid height and weight';
+    }
+  }
+
+  function calculateCalories() {
+    const age = parseInt(document.getElementById('age').value, 10);
+    const gender = document.getElementById('gender').value;
+    const activity = document.getElementById('activity').value;
+
+    if (age > 0 && globalHeight > 0 && globalWeight > 0 && activity) {
+      let bmr;
+      if (gender === 'male') {
+        bmr = 88.36 + (13.4 * globalWeight) + (4.8 * globalHeight) - (5.7 * age);
+      } else {
+        bmr = 447.6 + (9.2 * globalWeight) + (3.1 * globalHeight) - (4.3 * age);
+      }
+
+      const activityFactors = {
+        sedentary: 1.2,
+        light: 1.375,
+        moderate: 1.55,
+        very: 1.725,
+        extra: 1.9
+      };
+
+      if (activityFactors[activity] !== undefined) {
+        const dailyCalories = (bmr * activityFactors[activity]).toFixed(0);
+        document.getElementById('calorieResult').innerHTML = `Your daily calorie requirement is <u>${dailyCalories}</u>calories`;
+      } else {
+        document.getElementById('calorieResult').textContent = 'Please select a valid activity level';
+      }
+    } else {
+      document.getElementById('calorieResult').textContent = 'Please enter valid details';
+    }
+  }
+</script>
+<script>
+    function toggleCollapse(id) {
+      const content = document.getElementById(id);
+      content.classList.toggle('active');
+    }
+  </script>
+
 </body>
 </html>
